@@ -1,3 +1,5 @@
+# here we r importing all the dependencies which are required for making this SalesEcho Project  - 
+
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -8,21 +10,23 @@ import base64
 from dotenv import load_dotenv
 import os
 
-# Load .env file
+# Loading thee dotenv so to get the api key from the env . without this ai part will not work.
 load_dotenv()
 cohere_api_key = os.getenv("COHERE_API_KEY")
 co = cohere.Client(cohere_api_key)
 
-# Page config
+# setting the page configuration here in order to make the titlee
 st.set_page_config(page_title="Sales Board", page_icon="📊", layout="wide")
 
 st.title("📊 Monthly Sales Dashboard with AI Summary + Voice")
 
-# File Upload
+# uploading the csv file here for the analysis 
+
 uploaded_file = st.file_uploader("📁 Upload Your CSV or Excel File", type=["csv", "xlsx"])
 
+
+
 if uploaded_file:
-    # Read file
     if uploaded_file.name.endswith('.csv'):
         df = pd.read_csv(uploaded_file)
     else:
